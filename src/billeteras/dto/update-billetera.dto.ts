@@ -7,7 +7,7 @@ export class UpdateBilleteraDto {
 
     @IsNumber()
     @IsOptional()
-    moneda: number;
+    moneda_id: number;
 
     @IsNumber()
     @IsOptional()

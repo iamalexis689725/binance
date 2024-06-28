@@ -6,8 +6,7 @@ export class CreateBilleteraDto {
     usuario: number;
 
     @IsNumber()
-    @IsNotEmpty()
-    moneda: number;
+    moneda_id: number;
 
     @IsNumber()
     @IsNotEmpty()

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Moneda } from "../../monedas/entities/moneda.entity";
 @Entity()
 export class Billetera {
     @PrimaryGeneratedColumn()
@@ -7,8 +8,8 @@ export class Billetera {
     @Column()
     usuario: number;
 
-    @Column()
-    moneda: number;
+    @ManyToOne(() => Moneda, moneda => moneda.billetera, { onDelete: "CASCADE" })
+    moneda: Moneda;
 
     @Column("double")
     saldo: number;

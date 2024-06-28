@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Billetera } from "../../billeteras/entities/billetera.entity";
 
 @Entity()
 export class Moneda {
@@ -10,4 +11,7 @@ export class Moneda {
 
     @Column("double")
     valorUSD: number;
+
+    @OneToMany(() => Billetera, billetera => billetera.moneda)
+    billetera?: Billetera[];
 }
