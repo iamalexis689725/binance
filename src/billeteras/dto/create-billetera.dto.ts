@@ -2,8 +2,7 @@ import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateBilleteraDto {
     @IsNumber()
-    @IsNotEmpty()
-    usuario: number;
+    usuario_id: number;
 
     @IsNumber()
     moneda_id: number;

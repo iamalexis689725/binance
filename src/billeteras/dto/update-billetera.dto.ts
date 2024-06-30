@@ -3,7 +3,7 @@ import { IsNumber, IsOptional, IsString } from "class-validator";
 export class UpdateBilleteraDto {
     @IsNumber()
     @IsOptional()
-    usuario: number;
+    usuario_id: number;
 
     @IsNumber()
     @IsOptional()

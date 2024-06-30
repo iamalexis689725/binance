@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Billetera } from "../../billeteras/entities/billetera.entity";
 
 @Entity()
 export class User {
@@ -12,4 +13,7 @@ export class User {
     password: string;
     @Column()
     esAdmin: boolean;
+
+    @OneToMany(() => Billetera, billetera => billetera.usuario)
+    billetera?: Billetera[];
 }
