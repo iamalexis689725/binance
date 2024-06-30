@@ -37,16 +37,35 @@ export class BilleterasService {
         return this.billeteraRepository.save(billetera);
     }
 
-    findAll() {
-        return this.billeteraRepository.find({ relations: ["moneda"] });
+    async findAll() {
+        const billeteras = await this.billeteraRepository.find({ relations: ["moneda"] });
+        return billeteras.map(billetera => ({
+            ...billetera,
+            valorEnUSD: billetera.saldo * billetera.moneda.valorUSD,
+        }));
     }
 
-    findOne(id: number) {
-        return this.billeteraRepository.findOne({ relations: ["moneda"], where: { id } });
+    async findOne(id: number) {
+        const billetera = await this.billeteraRepository.findOne({ relations: ["moneda"], where: { id } });
+        if (!billetera) {
+            throw new NotFoundException("Billetera not found");
+        }
+        return {
+            ...billetera,
+            valorEnUSD: billetera.saldo * billetera.moneda.valorUSD,
+        };
+    }
+
+    async findByUserId(userId: number) {
+        const billeteras = await this.billeteraRepository.find({ where: { usuario: { id: userId } }, relations: ["moneda"] });
+        return billeteras.map(billetera => ({
+            ...billetera,
+            valorEnUSD: billetera.saldo * billetera.moneda.valorUSD,
+        }));
     }
 
     async update(id: number, updateBilleteraDto: UpdateBilleteraDto) {
-        const billetera = await this.billeteraRepository.findOne({ where: { id }, relations: ["moneda", "usuario"] });
+        const billetera = await this.billeteraRepository.findOne({ where: { id }, relations: ["moneda"] });
 
         if (!billetera) {
             throw new NotFoundException("Billetera not found");
@@ -58,14 +77,6 @@ export class BilleterasService {
                 throw new NotFoundException("Moneda not found");
             }
             billetera.moneda = moneda;
-        }
-
-        if (updateBilleteraDto.usuario_id) {
-            const usuario = await this.usuarioRepository.findOneBy({ id: updateBilleteraDto.usuario_id });
-            if (!usuario) {
-                throw new NotFoundException("Usuario not found");
-            }
-            billetera.usuario = usuario;
         }
 
         billetera.saldo = updateBilleteraDto.saldo ?? billetera.saldo;
