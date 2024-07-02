@@ -12,6 +12,9 @@ export class Moneda {
     @Column("double")
     valorUSD: number;
 
+    @Column("double")
+    valorMoneda: number;
+
     @OneToMany(() => Billetera, billetera => billetera.moneda)
     billetera?: Billetera[];
 }

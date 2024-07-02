@@ -56,6 +56,7 @@ export class BilleterasService {
         };
     }
 
+    /*Esto lo ocupo para el poder buscar las billeteras por el usuario logueado*/
     async findByUserId(userId: number) {
         const billeteras = await this.billeteraRepository.find({ where: { usuario: { id: userId } }, relations: ["moneda"] });
         return billeteras.map(billetera => ({

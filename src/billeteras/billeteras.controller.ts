@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, Put } from "@nestjs/common";
 import { BilleterasService } from "./billeteras.service";
 import { CreateBilleteraDto } from "./dto/create-billetera.dto";
 import { UpdateBilleteraDto } from "./dto/update-billetera.dto";
@@ -28,6 +28,11 @@ export class BilleterasController {
     @Get(":id")
     findOne(@Param("id") id: string) {
         return this.billeterasService.findOne(+id);
+    }
+
+    @Put(":id")
+    updatePut(@Param("id") id: string, @Body() updateBilleteraDto: CreateBilleteraDto) {
+        return this.billeterasService.update(+id, updateBilleteraDto);
     }
 
     @Patch(":id")

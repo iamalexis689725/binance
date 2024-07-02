@@ -7,4 +7,7 @@ export class CreateMonedaDto {
     @IsNumber()
     @IsNotEmpty()
     readonly valorUSD: number;
+    @IsNumber()
+    @IsNotEmpty()
+    readonly valorMoneda: number;
 }

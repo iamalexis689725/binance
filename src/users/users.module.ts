@@ -9,11 +9,14 @@ import { BilleterasController } from "../billeteras/billeteras.controller";
 import { Moneda } from "../monedas/entities/moneda.entity";
 import { MonedasService } from "../monedas/monedas.service";
 import { MonedasController } from "../monedas/monedas.controller";
+import { Tarjeta } from "../tarjetas/entities/tarjeta.entity";
+import { TarjetasService } from "../tarjetas/tarjetas.service";
+import { TarjetasController } from "../tarjetas/tarjetas.controller";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([User, Billetera, Moneda])],
-    providers: [UsersService, BilleterasService, MonedasService],
+    imports: [TypeOrmModule.forFeature([User, Billetera, Moneda, Tarjeta])],
+    providers: [UsersService, BilleterasService, MonedasService, TarjetasService],
     exports: [UsersService],
-    controllers: [UsersController, BilleterasController, MonedasController],
+    controllers: [UsersController, BilleterasController, MonedasController, TarjetasController],
 })
 export class UsersModule {}

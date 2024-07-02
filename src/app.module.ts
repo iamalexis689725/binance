@@ -9,6 +9,8 @@ import { MonedasModule } from "./monedas/monedas.module";
 import { Moneda } from "./monedas/entities/moneda.entity";
 import { BilleterasModule } from "./billeteras/billeteras.module";
 import { Billetera } from "./billeteras/entities/billetera.entity";
+import { TarjetasModule } from "./tarjetas/tarjetas.module";
+import { Tarjeta } from "./tarjetas/entities/tarjeta.entity";
 
 @Module({
     imports: [
@@ -19,7 +21,7 @@ import { Billetera } from "./billeteras/entities/billetera.entity";
             username: "root",
             password: "",
             database: "binance",
-            entities: [User, Moneda, Billetera],
+            entities: [User, Moneda, Billetera, Tarjeta],
             synchronize: true, //esto es solo para desarrollo
         }),
         TypeOrmModule.forFeature([User]),
@@ -27,6 +29,7 @@ import { Billetera } from "./billeteras/entities/billetera.entity";
         UsersModule,
         MonedasModule,
         BilleterasModule,
+        TarjetasModule,
     ],
     controllers: [AppController],
     providers: [AppService],

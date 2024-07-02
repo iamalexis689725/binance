@@ -7,4 +7,7 @@ export class UpdateMonedaDto {
     @IsNumber()
     @IsOptional()
     readonly valorUSD: number;
+    @IsNumber()
+    @IsOptional()
+    readonly valorMoneda: number;
 }
