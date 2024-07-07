@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, Put } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, Put, NotFoundException } from "@nestjs/common";
 import { BilleterasService } from "./billeteras.service";
 import { CreateBilleteraDto } from "./dto/create-billetera.dto";
 import { UpdateBilleteraDto } from "./dto/update-billetera.dto";
@@ -28,6 +28,13 @@ export class BilleterasController {
     @Get(":id")
     findOne(@Param("id") id: string) {
         return this.billeterasService.findOne(+id);
+    }
+
+    @Get("codigo-unico/:codigoUnico")
+    findByCodigoUnico(@Param("codigoUnico") codigoUnico: string) {
+        return this.billeterasService.findByCodigoUnico(codigoUnico).catch(() => {
+            throw new NotFoundException(`Beneficiario con código único '${codigoUnico}' no encontrado.`);
+        });
     }
 
     @Put(":id")

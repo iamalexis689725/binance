@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Moneda } from "../../monedas/entities/moneda.entity";
 import { User } from "../../users/dto/User";
+import { Movimiento } from "../../movimientos/entities/movimiento.entity";
 @Entity()
 export class Billetera {
     @PrimaryGeneratedColumn()
@@ -17,4 +18,7 @@ export class Billetera {
 
     @Column()
     codigo: string;
+
+    @OneToMany(() => Movimiento, movimiento => movimiento.billetera)
+    movimiento?: Movimiento[];
 }

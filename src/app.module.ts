@@ -11,6 +11,12 @@ import { BilleterasModule } from "./billeteras/billeteras.module";
 import { Billetera } from "./billeteras/entities/billetera.entity";
 import { TarjetasModule } from "./tarjetas/tarjetas.module";
 import { Tarjeta } from "./tarjetas/entities/tarjeta.entity";
+import { MovimientosModule } from "./movimientos/movimientos.module";
+import { Movimiento } from "./movimientos/entities/movimiento.entity";
+import { CuentasModule } from "./cuentas/cuentas.module";
+import { Cuenta } from "./cuentas/entities/cuenta.entity";
+import { BeneficiariosModule } from "./beneficiarios/beneficiarios.module";
+import { Beneficiario } from "./beneficiarios/entities/beneficiario.entity";
 
 @Module({
     imports: [
@@ -21,7 +27,7 @@ import { Tarjeta } from "./tarjetas/entities/tarjeta.entity";
             username: "root",
             password: "",
             database: "binance",
-            entities: [User, Moneda, Billetera, Tarjeta],
+            entities: [User, Moneda, Billetera, Tarjeta, Movimiento, Cuenta, Beneficiario],
             synchronize: true, //esto es solo para desarrollo
         }),
         TypeOrmModule.forFeature([User]),
@@ -30,6 +36,9 @@ import { Tarjeta } from "./tarjetas/entities/tarjeta.entity";
         MonedasModule,
         BilleterasModule,
         TarjetasModule,
+        MovimientosModule,
+        CuentasModule,
+        BeneficiariosModule,
     ],
     controllers: [AppController],
     providers: [AppService],

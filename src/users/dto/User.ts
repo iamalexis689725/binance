@@ -1,6 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Billetera } from "../../billeteras/entities/billetera.entity";
 import { Tarjeta } from "../../tarjetas/entities/tarjeta.entity";
+import { Cuenta } from "../../cuentas/entities/cuenta.entity";
+import { Beneficiario } from "../../beneficiarios/entities/beneficiario.entity";
 
 @Entity()
 export class User {
@@ -20,4 +22,10 @@ export class User {
 
     @OneToMany(() => Tarjeta, tarjeta => tarjeta.usuario)
     tarjeta?: Tarjeta[];
+
+    @OneToMany(() => Cuenta, cuenta => cuenta.usuario)
+    cuenta?: Cuenta[];
+
+    @OneToMany(() => Beneficiario, beneficiario => beneficiario.usuario)
+    beneficiario?: Beneficiario[];
 }
