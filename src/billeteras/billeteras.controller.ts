@@ -30,6 +30,13 @@ export class BilleterasController {
         return this.billeterasService.findOne(+id);
     }
 
+    @Get("usuario/:id")
+    findByUserId(@Param("id") id: number) {
+        return this.billeterasService.findByUserId(id).catch(() => {
+            throw new NotFoundException(`billetera con usuario '${id}' no encontrado.`);
+        });
+    }
+
     @Get("codigo-unico/:codigoUnico")
     findByCodigoUnico(@Param("codigoUnico") codigoUnico: string) {
         return this.billeterasService.findByCodigoUnico(codigoUnico).catch(() => {

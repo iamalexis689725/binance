@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, NotFoundException } from "@nestjs/common";
 import { MovimientosService } from "./movimientos.service";
 import { CreateMovimientoDto } from "./dto/create-movimiento.dto";
 import { UpdateMovimientoDto } from "./dto/update-movimiento.dto";
@@ -20,6 +20,13 @@ export class MovimientosController {
     @Get(":id")
     findOne(@Param("id") id: string) {
         return this.movimientosService.findOne(+id);
+    }
+
+    @Get("billetera/:billeteraId")
+    findByBilleteraId(@Param("billeteraId") billeteraId: string) {
+        return this.movimientosService.findByBilleteraId(+billeteraId).catch(() => {
+            throw new NotFoundException(`Movimientos with billetera ID '${billeteraId}' not found.`);
+        });
     }
 
     @Put(":id")

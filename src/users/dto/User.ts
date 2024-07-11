@@ -3,6 +3,7 @@ import { Billetera } from "../../billeteras/entities/billetera.entity";
 import { Tarjeta } from "../../tarjetas/entities/tarjeta.entity";
 import { Cuenta } from "../../cuentas/entities/cuenta.entity";
 import { Beneficiario } from "../../beneficiarios/entities/beneficiario.entity";
+import { Venta } from "../../ventas/entities/venta.entity";
 
 @Entity()
 export class User {
@@ -28,4 +29,7 @@ export class User {
 
     @OneToMany(() => Beneficiario, beneficiario => beneficiario.usuario)
     beneficiario?: Beneficiario[];
+
+    @OneToMany(() => Venta, venta => venta.usuario)
+    venta?: Venta[];
 }

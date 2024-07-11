@@ -17,9 +17,17 @@ import { CuentasModule } from "./cuentas/cuentas.module";
 import { Cuenta } from "./cuentas/entities/cuenta.entity";
 import { BeneficiariosModule } from "./beneficiarios/beneficiarios.module";
 import { Beneficiario } from "./beneficiarios/entities/beneficiario.entity";
+import { VentasModule } from "./ventas/ventas.module";
+import { Venta } from "./ventas/entities/venta.entity";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
 
 @Module({
     imports: [
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, "..", "uploads"),
+            serveRoot: "/uploads", // La ruta desde la que se accederá a los archivos
+        }),
         TypeOrmModule.forRoot({
             type: "mysql",
             host: "localhost",
@@ -27,7 +35,7 @@ import { Beneficiario } from "./beneficiarios/entities/beneficiario.entity";
             username: "root",
             password: "",
             database: "binance",
-            entities: [User, Moneda, Billetera, Tarjeta, Movimiento, Cuenta, Beneficiario],
+            entities: [User, Moneda, Billetera, Tarjeta, Movimiento, Cuenta, Beneficiario, Venta],
             synchronize: true, //esto es solo para desarrollo
         }),
         TypeOrmModule.forFeature([User]),
@@ -39,6 +47,7 @@ import { Beneficiario } from "./beneficiarios/entities/beneficiario.entity";
         MovimientosModule,
         CuentasModule,
         BeneficiariosModule,
+        VentasModule,
     ],
     controllers: [AppController],
     providers: [AppService],

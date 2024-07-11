@@ -2,6 +2,7 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "ty
 import { Moneda } from "../../monedas/entities/moneda.entity";
 import { User } from "../../users/dto/User";
 import { Movimiento } from "../../movimientos/entities/movimiento.entity";
+import { Venta } from "../../ventas/entities/venta.entity";
 @Entity()
 export class Billetera {
     @PrimaryGeneratedColumn()
@@ -21,4 +22,10 @@ export class Billetera {
 
     @OneToMany(() => Movimiento, movimiento => movimiento.billetera)
     movimiento?: Movimiento[];
+
+    @OneToMany(() => Venta, venta => venta.billeteraOrigen)
+    ventasOrigen?: Venta[];
+
+    @OneToMany(() => Venta, venta => venta.billeteraDestino)
+    ventasDestino?: Venta[];
 }

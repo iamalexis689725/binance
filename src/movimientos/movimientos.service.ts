@@ -51,6 +51,19 @@ export class MovimientosService {
         return movimiento;
     }
 
+    async findByBilleteraId(billeteraId: number) {
+        const movimientos = await this.movimientoRepository.find({
+            relations: ["billetera", "movReferencia"],
+            where: { billetera: { id: billeteraId } },
+        });
+
+        if (!movimientos || movimientos.length === 0) {
+            throw new NotFoundException("No movements found for this billetera ID");
+        }
+
+        return movimientos;
+    }
+
     async update(id: number, updateMovimientoDto: UpdateMovimientoDto) {
         const movimiento = await this.movimientoRepository.findOne({ where: { id }, relations: ["billetera", "movReferencia"] });
 

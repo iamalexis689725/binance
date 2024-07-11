@@ -12,9 +12,10 @@ import { UsersService } from "../users/users.service";
 import { Movimiento } from "../movimientos/entities/movimiento.entity";
 import { MovimientosController } from "../movimientos/movimientos.controller";
 import { MovimientosService } from "../movimientos/movimientos.service";
+import { Venta } from "../ventas/entities/venta.entity";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Billetera, Moneda, User, Movimiento])],
+    imports: [TypeOrmModule.forFeature([Billetera, Moneda, User, Movimiento, Venta])],
     controllers: [BilleterasController, MonedasController, UsersController, MovimientosController],
     providers: [BilleterasService, MonedasService, UsersService, MovimientosService],
 })

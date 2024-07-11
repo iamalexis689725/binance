@@ -66,9 +66,9 @@ export class BilleterasService {
     }
 
     async findByCodigoUnico(codigo: string) {
-        const billetera = await this.billeteraRepository.findOne({ relations: ["usuario"], where: { codigo } });
+        const billetera = await this.billeteraRepository.findOne({ relations: ["usuario", "moneda"], where: { codigo } });
         if (!billetera) {
-            throw new NotFoundException("billetera not found");
+            throw new NotFoundException("Billetera not found");
         }
         return billetera;
     }

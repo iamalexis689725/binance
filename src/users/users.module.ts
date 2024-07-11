@@ -21,9 +21,10 @@ import { CuentasController } from "../cuentas/cuentas.controller";
 import { Beneficiario } from "../beneficiarios/entities/beneficiario.entity";
 import { BeneficiariosService } from "../beneficiarios/beneficiarios.service";
 import { BeneficiariosController } from "../beneficiarios/beneficiarios.controller";
+import { Venta } from "../ventas/entities/venta.entity";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([User, Billetera, Moneda, Tarjeta, Movimiento, Cuenta, Beneficiario])],
+    imports: [TypeOrmModule.forFeature([User, Billetera, Moneda, Tarjeta, Movimiento, Cuenta, Beneficiario, Venta])],
     providers: [UsersService, BilleterasService, MonedasService, TarjetasService, MovimientosService, CuentasService, BeneficiariosService],
     exports: [UsersService],
     controllers: [UsersController, BilleterasController, MonedasController, TarjetasController, MovimientosController, CuentasController, BeneficiariosController],
