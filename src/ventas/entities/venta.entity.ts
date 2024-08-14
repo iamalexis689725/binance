@@ -22,19 +22,19 @@ export class Venta {
 
     comprobanteURL: string;
 
-    @ManyToOne(() => Moneda)
+    @ManyToOne(() => Moneda, { onDelete: "CASCADE" })
     @JoinColumn()
     moneda: Moneda;
 
-    @ManyToOne(() => Billetera)
+    @ManyToOne(() => Billetera, { onDelete: "CASCADE" })
     @JoinColumn()
     billeteraOrigen: Billetera;
 
-    @ManyToOne(() => Billetera, { nullable: true })
+    @ManyToOne(() => Billetera, { nullable: true, onDelete: "CASCADE" })
     @JoinColumn()
     billeteraDestino: Billetera;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, { onDelete: "CASCADE" })
     @JoinColumn()
     usuario: User;
 

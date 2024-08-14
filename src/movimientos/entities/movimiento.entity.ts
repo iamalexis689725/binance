@@ -11,7 +11,7 @@ export class Movimiento {
     })
     billetera: Billetera;
 
-    @ManyToOne(() => Movimiento, movimiento => movimiento.movimientos)
+    @ManyToOne(() => Movimiento, movimiento => movimiento.movimientos, { onDelete: "CASCADE" })
     movReferencia: Movimiento;
 
     @OneToMany(() => Movimiento, movimiento => movimiento.movReferencia)
